@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Aplicação Web de cadastro com React e Firebase
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+useState, useEffect, useContext
 
 ## Available Scripts
 

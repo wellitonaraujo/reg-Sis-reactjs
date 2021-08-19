@@ -1,15 +1,22 @@
-import { useState } from 'react';
-import './signin.css'
-import logo from '../../assets/logo.png'
-import { Link } from 'react-router-dom'
-import { func } from 'prop-types';
+import { useState, useContext } from 'react';
+import './signin.css';
+import logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
+
+import { AuthContext } from '../../contexts/auth'
 
 function SignIn() {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
+  const { signIn, loadingAuth } = useContext(AuthContext);
+
   function handleSubmit(event) {
     event.preventDefault();
+
+    if(email !== '' && password !== '') {
+      signIn(email, password);
+    }
  
   }
     return (
@@ -23,10 +30,9 @@ function SignIn() {
             <h1>Entrar</h1>
             <input type="email" placeholder="exemplo@email.com" value={email} onChange ={ (event) => setEmail(event.target.value)}/>
             <input type="password" placeholder="*******" value={password} onChange={ (event) => setPassword(event.target.value) }/>
-            <button type="submt">Acessar</button>
+            <button type="submt"> {loadingAuth ? 'Carregando...' : 'Acessar'} </button>
           </form>
           <Link to="/register">Criar conta</Link>
-
         </div>
       </div>
     );
